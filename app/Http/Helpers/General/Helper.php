@@ -84,7 +84,7 @@ class Helper{
                     return url($thumbPath.$nameWithOutExt.$ext);
                 }else{
 
-                    if (!file_exists($file)){return  url(config('settings.placeholderImg')); }
+                    if (!file_exists($file)){return  url(config('settings.placeholderImgFull')); }
                     $thumb = $gService->createThumb($file,$thumb);
                     return  url($thumb);
                 }
@@ -99,7 +99,7 @@ class Helper{
 //        }catch (\Exception $exception){
 ////            dd($modal->id);
 //            //  Self::errorHandling($exception,$file);
-//            return  url(config('settings.placeholderImg'));
+//            return  url(config('settings.placeholderImgFull'));
 //
 //        }
 
