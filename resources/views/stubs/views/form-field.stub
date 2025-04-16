@@ -1,0 +1,4 @@
+        <div class="form-group">
+             <x-input-label for="name" :value="__('{{column}}')" />
+             <x-text-input id="'{{column}}'" name="'{{column}}'" type="text" class="mt-1 block w-full" :value="old('{{column}}', ${{modelNameLowerCase}}->{{column}})" required autofocus autocomplete="name" placeholder = '{{title}}' />
+        </div>

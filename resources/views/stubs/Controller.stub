@@ -1,0 +1,144 @@
+<?php
+
+namespace {{controllerNamespace}};
+
+use {{modelNamespace}}\{{modelName}};
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Services\GeneralService;
+/**
+ * Class {{modelName}}Controller
+ * @package App\Http\Controllers
+ */
+class {{modelName}}Controller extends Controller
+{
+    public GeneralService $gService;
+    public {{modelNamePluralUpperCase}}'Service $service;
+    public string $viewFolder = '{{modelView}}';
+    public static string $route = '{{modelRoute}}';
+    public static string $permissionPrefix = '{{modelNameLowerCase}}';
+
+    public function __construct()
+    {
+        $this->gService = new GeneralService();
+        $this->service = new '{{modelNamePluralUpperCase}}'Service();
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+     if (!request()->user()->can($this->permissionPrefix.'.view')){
+                return abort('403');
+     }
+        ${{modelNamePluralLowerCase}} = {{modelName}}::paginate();
+
+        return view($this->viewFolder.'.index', compact('{{modelNamePluralLowerCase}}'))
+            ->with('i', (request()->input('page', 1) - 1) * ${{modelNamePluralLowerCase}}->perPage());
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+     if (!request()->user()->can($this->permissionPrefix.'.create')){
+                return abort('403');
+            }
+        ${{modelNameLowerCase}} = new {{modelName}}();
+        return view($this->viewFolder.'.create', compact('{{modelNameLowerCase}}'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        if (!request()->user()->can($this->permissionPrefix.'.create')){
+                return abort('403');
+            }
+        request()->validate({{modelName}}::$rules);
+
+        ${{modelNameLowerCase}} = {{modelName}}::create($request->all());
+
+        return redirect()->route($this->$route.'.index')
+            ->with('success', '{{modelName}} created successfully.');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        if (!request()->user()->can($this->permissionPrefix.'.view')){
+                    return abort('403');
+                }
+        ${{modelNameLowerCase}} = {{modelName}}::find($id);
+
+        return view($this->viewFolder.'.show', compact('{{modelNameLowerCase}}'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        if (!request()->user()->can($this->permissionPrefix.'.edit')){
+                return abort('403');
+            }
+        ${{modelNameLowerCase}} = {{modelName}}::find($id);
+
+        return view($this->viewFolder.'.edit', compact('{{modelNameLowerCase}}'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  {{modelName}} ${{modelNameLowerCase}}
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, {{modelName}} ${{modelNameLowerCase}})
+    {
+     if (!request()->user()->can($this->permissionPrefix.'.edit')){
+                return abort('403');
+            }
+        request()->validate({{modelName}}::$rules);
+
+        ${{modelNameLowerCase}}->update($request->all());
+
+        return redirect()->route($this->$route.'.index')
+            ->with('success', '{{modelName}} updated successfully');
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy($id)
+    {
+        if (!request()->user()->can($this->permissionPrefix.'.delete')){
+                return abort('403');
+            }
+        ${{modelNameLowerCase}} = {{modelName}}::find($id)->delete();
+
+        return redirect()->route($this->$route.'.index')
+            ->with('success', '{{modelName}} deleted successfully');
+    }
+}
