@@ -12,6 +12,7 @@
 
 <?php $__env->startSection('content'); ?>
     <?php if(count($bannerPosts) == 5): ?>
+        
     <div class="home_featured_story">
         <div class="container">
             <ul>
@@ -190,4 +191,4 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.web', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\celebinbox\resources\views/website/home.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.web', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\laragon\www\contentfeeds\resources\views/website/home.blade.php ENDPATH**/ ?>

@@ -16,4 +16,4 @@
         <p class="copyRight">© 2025 - Celebinbox. All Rights Reserved.</p>
     </div>
 </footer>
-<?php /**PATH D:\laragon\www\celebinbox\resources\views/layouts/partials/web/footer.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\laragon\www\contentfeeds\resources\views/layouts/partials/web/footer.blade.php ENDPATH**/ ?>

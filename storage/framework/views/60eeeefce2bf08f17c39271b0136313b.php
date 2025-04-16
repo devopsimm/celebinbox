@@ -82,4 +82,4 @@
 <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 </html>
-<?php /**PATH D:\laragon\www\celebinbox\resources\views/layouts/web.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\laragon\www\contentfeeds\resources\views/layouts/web.blade.php ENDPATH**/ ?>

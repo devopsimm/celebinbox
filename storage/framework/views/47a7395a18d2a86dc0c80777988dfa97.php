@@ -42,4 +42,4 @@
            <?php endif; ?>
     </div>
 </div>
-<?php /**PATH D:\laragon\www\celebinbox\resources\views/layouts/partials/web/rightSideBar.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\laragon\www\contentfeeds\resources\views/layouts/partials/web/rightSideBar.blade.php ENDPATH**/ ?>

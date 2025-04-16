@@ -40,4 +40,4 @@
     </div>
 
 </header>
-<?php /**PATH D:\laragon\www\celebinbox\resources\views/layouts/partials/web/header.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\laragon\www\contentfeeds\resources\views/layouts/partials/web/header.blade.php ENDPATH**/ ?>

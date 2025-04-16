@@ -38,4 +38,4 @@
 
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </div>
-<?php /**PATH D:\laragon\www\celebinbox\resources\views/layouts/partials/web/postVerticalSection.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\laragon\www\contentfeeds\resources\views/layouts/partials/web/postVerticalSection.blade.php ENDPATH**/ ?>

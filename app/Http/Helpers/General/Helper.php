@@ -54,19 +54,19 @@ class Helper{
     public static function getFileUrl($file,$modal=false,$table=false,$thumb=false,$nextGenFormat='jpg'){
 
 //        try {
+        $gService = new GeneralService();
+        if ($file == null){
+            return '';
+        }
+        $newFolder = '';
+        if ($modal != false){
+            $newFolder = Carbon::parse($modal->created_at)->format('Y-m-d').'/';
 
-            $gService = new GeneralService();
-            if ($file == null){
-                return '';
-            }
-            $newFolder = '';
-            if ($modal != false){
-                $newFolder = Carbon::parse($modal->created_at)->format('Y-m-d').'/';
+
+        }
 
 
-            }
-
-            if ($thumb != false){
+        if ($thumb != false){
                 $fileEle = explode('/',$file);
                 $fileName = $fileEle[count($fileEle)-1];
                 $nameWithOutExt = explode('.',$fileName);
@@ -78,12 +78,13 @@ class Helper{
                 $thumbPath = implode('/',$fileEle).'/thumbs/'.$thumb.'/';
 
 
-                 
+
                 if (file_exists($thumbPath.$nameWithOutExt.$ext)){
 
                     return url($thumbPath.$nameWithOutExt.$ext);
                 }else{
-                    if (!file_exists($file)){return config('settings.preAssetUrl').$newFolder.$file; }
+
+                    if (!file_exists($file)){return  url(config('settings.placeholderImg')); }
                     $thumb = $gService->createThumb($file,$thumb);
                     return  url($thumb);
                 }
@@ -163,13 +164,14 @@ class Helper{
         if ($img == null){
             return  null;
         }
-        
+
 
 
         $isAbsolute = Helper::isAbsoluteUrl($img);
         if ($post['post']->id == '5646') {
-            // dd($img);        
+            // dd($img);
         }
+
         if ($isAbsolute){
             $img = $gService->downloadImage($img);
             $gService->saveDownloadedImgInDb($post['post']->id, $img);
@@ -179,6 +181,7 @@ class Helper{
 
             return url($img);
         }else{
+           ;
            // dd($img);
             return Helper::getFileUrl($img,$post['post'],'post',$thumb);
         }

@@ -13,4 +13,4 @@
        title="<?php echo e($post->title); ?>" class="open-section">
         <?php echo e($post->title); ?> </a>
 </div>
-<?php /**PATH D:\laragon\www\celebinbox\resources\views/layouts/partials/web/postThumbnailSmall.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\laragon\www\contentfeeds\resources\views/layouts/partials/web/postThumbnailSmall.blade.php ENDPATH**/ ?>

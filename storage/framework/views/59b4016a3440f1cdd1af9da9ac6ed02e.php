@@ -1,6 +1,6 @@
 <div class="imgBox">
     <?php if(isset($badge)): ?>
-        
+
         <span><a class="<?php echo e($badge); ?>" href="<?php echo e(route('categoryPage',$post->MainCategory->slug)); ?>"
                  title="<?php echo e(ucfirst($post->MainCategory->name)); ?>">
                 <?php echo e(ucfirst($post->MainCategory->name)); ?>
@@ -28,4 +28,4 @@
         <?php echo e($post->title); ?>  </a>
     <p><?php echo e($post->title); ?> </p>
 </div>
-<?php /**PATH D:\laragon\www\celebinbox\resources\views/layouts/partials/web/postThumbnail.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\laragon\www\contentfeeds\resources\views/layouts/partials/web/postThumbnail.blade.php ENDPATH**/ ?>
