@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Http;
 
 class AiService
 {
-    protected $apiKey = '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';
+    // protected $apiKey = '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';
+    protected $apiKey = env("AI_KEY");
     protected $apiUrl = 'https://api.openai.com/v1/chat/completions'; // Replace with your API endpoint
-
     public function getResponse($prompt,$systemPrompt=false)
     {
         if (!$systemPrompt){
