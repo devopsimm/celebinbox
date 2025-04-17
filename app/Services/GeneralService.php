@@ -111,7 +111,7 @@ class GeneralService
     public function uploadImgAi($image, $path,$thumbnails=false,$fName=false)
     {
 
-        $dirPath = '/home/1261836.cloudwaysapps.com/wmwzycmxbm/public_html/storage/app/public/';
+        $dirPath = '/home/1443902.cloudwaysapps.com/wmwzycmxbm/public_html/storage/app/public/';
 //       $dirPath = env('APP_ROOT');
 //
 
@@ -167,9 +167,9 @@ class GeneralService
     public function uploadImg($image, $path,$thumbnails=false,$fName=false)
     {
 
-//        $dirPath = '/home/1261836.cloudwaysapps.com/xevxpmjdfs/public_html/storage/app/public/';
+//        $dirPath = '/home/1443902.cloudwaysapps.com/xevxpmjdfs/public_html/storage/app/public/';
         $dirPath = env('APP_ROOT');
-        $dirPath = '/home/1261836.cloudwaysapps.com/wmwzycmxbm/public_html/storage/app/public/';
+        $dirPath = '/home/1443902.cloudwaysapps.com/wmwzycmxbm/public_html/storage/app/public/';
 
         $date = Carbon::now()->format('y-m-d');
         if (!$fName){
@@ -219,7 +219,7 @@ class GeneralService
     public function createThumb($file,$thumb){
 //        try {
 //
-        $dirPath = '/home/1261836.cloudwaysapps.com/wmwzycmxbm/public_html/storage/app/public/';
+        $dirPath = '/home/1443902.cloudwaysapps.com/wmwzycmxbm/public_html/storage/app/public/';
 
         $fileEle = explode('/',$file);
         $fileName = $fileEle[count($fileEle)-1];
@@ -257,7 +257,7 @@ class GeneralService
     public function processImagesInHtml(string $html,string $altText, string $storageDir = 'storage/app/public/posts/'): string
     {
         // Make sure directory exists
-        $dirPath = '/home/1261836.cloudwaysapps.com/wmwzycmxbm/public_html/';
+        $dirPath = '/home/1443902.cloudwaysapps.com/wmwzycmxbm/public_html/';
 
         // Ensure the target directory exists
         if (!file_exists($dirPath . $storageDir)) {
@@ -388,7 +388,7 @@ class GeneralService
         }
 
 
-        $basePath = '/home/1261836.cloudwaysapps.com/wmwzycmxbm/public_html/';
+        $basePath = '/home/1443902.cloudwaysapps.com/wmwzycmxbm/public_html/';
        // $basePath = env('APP_ROOT');
         $fullSaveDir = $basePath . $saveDir;
 //        try {
