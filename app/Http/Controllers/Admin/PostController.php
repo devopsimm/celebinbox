@@ -271,6 +271,7 @@ class  PostController extends Controller
         $prompt = "Take the given HTML content and rewrite only the text within the tags while keeping all HTML elements, attributes, and images exactly as they are. Ensure the rephrased text is natural, engaging, and flows smoothly, as if written by a professional journalist. The news story should have a human touch, making it compelling and well-structured. Improve readability, fix any grammatical errors, and enhance clarity while maintaining the original meaning. Preserve the tone and context of the content, ensuring it feels authentic and well-articulated. Replace any <a> tags with <span> tags and remove the href attributes, but do not modify the structure or content of any other tags specially Image tag or Figure tag, just update the text.
         {$htmlContent}";
         $response = $aiService->getResponse($prompt);
+        dd($response);
         //$image = $aiService->generateImage($post->title,$post->id,$post->slug);
         if ($response['choices'][0]['message']['content']){
             $post->description_org = $post->description;
