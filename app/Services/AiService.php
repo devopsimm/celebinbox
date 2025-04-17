@@ -18,7 +18,7 @@ class AiService
             'Authorization' => 'Bearer ' . $this->apiKey,
             'Content-Type' => 'application/json',
         ])->timeout(90)->post($this->apiUrl, [
-            'model' => 'gpt-3.5-turbo', // Specify the AI model
+            'model' => 'gpt-4-turbo', // Specify the AI model
            // 'prompt' => $prompt,
             'messages' => [
                 [
