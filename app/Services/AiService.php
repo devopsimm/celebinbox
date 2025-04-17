@@ -18,7 +18,7 @@ class AiService
     protected $apiUrl = 'https://api.openai.com/v1/chat/completions'; // Replace with your API endpoint
     public function getResponse($prompt,$systemPrompt=false)
     {
-        dd($this->apiKey);
+       // dd($this->apiKey);
 
         if (!$systemPrompt){
             $systemPrompt = 'Please rephrase only the text content in the following HTML code while keeping all HTML tags, attributes, and images intact. Replace any <a> tags with <span> tags and remove the href attributes, but do not modify the structure or content of any tags.';
