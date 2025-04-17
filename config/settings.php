@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'ai' => [
+        'key' => env('AI_KEY'),
+    ],
     'placeholderImg'=>'website/img/logo.png',
     'placeholderImgFull'=>'https://www.celebinbox.com/website/img/ci-700x390.jpg',
     'placeholderImg370'=>'https://www.celebinbox.com/website/img/ci-370x222.jpg',

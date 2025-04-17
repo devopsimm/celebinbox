@@ -10,7 +10,7 @@ class AiService
 
     public function __construct()
     {
-        $this->apiKey = env('AI_KEY'); // or config('services.ai.key')
+        $this->apiKey = config('settings.ai.key');
     }
 
     // protected $apiKey = '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';
@@ -19,6 +19,7 @@ class AiService
     public function getResponse($prompt,$systemPrompt=false)
     {
         dd($this->apiKey);
+
         if (!$systemPrompt){
             $systemPrompt = 'Please rephrase only the text content in the following HTML code while keeping all HTML tags, attributes, and images intact. Replace any <a> tags with <span> tags and remove the href attributes, but do not modify the structure or content of any tags.';
         }
