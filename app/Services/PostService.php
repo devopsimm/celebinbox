@@ -70,12 +70,12 @@ class PostService
             if (isset($filters['startDate'])){
                 $date = $filters['startDate'];
                 $date = Carbon::parse($date);
-                $posts = $posts->whereDate('posted_at','>',$date);
+                $posts = $posts->whereDate('posted_at','>=',$date);
             }
             if (isset($filters['endDate'])){
                 $date = $filters['endDate'];
                 $date = Carbon::parse($date);
-                $posts = $posts->whereDate('posted_at','<',$date);
+                $posts = $posts->whereDate('posted_at','<=',$date);
             }
 
         }
