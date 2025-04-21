@@ -67,6 +67,7 @@ Route::group(['middleware'=>['auth','twoFactor'],'prefix'=>'admin'], function ()
     Route::get('/posts/{id}/rephraseContent/', [PostController::class, 'rephraseContent'])->name('rephraseContent');
     Route::get('/posts/{id}/rephraseTitle/', [PostController::class, 'rephraseTitle'])->name('rephraseTitle');
     Route::get('/posts/{id}/rephraseExcerpt/', [PostController::class, 'rephraseExcerpt'])->name('rephraseExcerpt');
+    Route::get('/posts/{id}/revert-original/', [PostController::class, 'revertOriginal'])->name('revertOriginal');
 
 
 

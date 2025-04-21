@@ -22,6 +22,7 @@
                          @if($post->is_rephrase == 1 || $post->is_title_rephrased == 1  || $post->is_excerpt_rephrased == 1  )
                          <a href="#." id="viewOrg" class="btn btn-dark text-white">View Original</a>
                          <a href="#." id="closeBtn" style="display:none;" class="btn btn-dark text-white">Hide Original</a>
+                         <a href="{{ route('revertOriginal',$post->id) }}" class="loaderLink btn btn-primary">Revert Original</a>
                          @endif
                              <a href="{{ route('rephraseTitle',$post->id) }}" id="rephraseLink" class="loaderLink btn btn-primary">Rephrase Title & Excerpt</a>
 {{--                             <a href="{{ route('rephraseExcerpt',$post->id) }}" id="rephraseLink2" class="loaderLink btn btn-primary">Rephrase Excerpt</a>--}}

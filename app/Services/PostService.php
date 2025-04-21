@@ -38,6 +38,7 @@ class PostService
     }
     public function index($request,$type='detailed',$publishStatus = 1,$cat = false,$filters=false,$perPage=false){
 
+
         if ($cat != false){
             $catId = Category::where('slug',$cat)->first();
             if ($catId){
@@ -92,12 +93,11 @@ class PostService
         if ($type == 'simple'){
             return $posts->orderBy('id','desc')->simplePaginate();
         }else{
-
-
             if($publishStatus == 0){
 
                 return $posts->orderBy('updated_at','desc')->paginate();
             }
+
 
             return $posts->orderBy('posted_at','desc')->paginate();
         }
@@ -1426,7 +1426,7 @@ class PostService
             $post = Post::where('id',$id)->where('is_published','1')->where('posts.status','!=','0')->with('user','template','categories','meta','tags','MainCategory','relatedPosts')->first();
             if ($post) {
                 Redis::setex('post:'.$id, config('settings.cacheExpiry'), $post);
-            } 
+            }
         }
 
         if ($action == 'cfUpdate'){}

@@ -12,7 +12,7 @@
 
 <?php $__env->startSection('content'); ?>
     <?php if(count($bannerPosts) == 5): ?>
-        
+
     <div class="home_featured_story">
         <div class="container">
             <ul>

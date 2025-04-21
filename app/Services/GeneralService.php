@@ -391,7 +391,7 @@ class GeneralService
         $basePath = '/home/1443902.cloudwaysapps.com/wmwzycmxbm/public_html/';
        // $basePath = env('APP_ROOT');
         $fullSaveDir = $basePath . $saveDir;
-//        try {
+        try {
             $imageUrl = str_replace(' ', '%20', trim($imageUrl));
             $extension = pathinfo(parse_url($imageUrl, PHP_URL_PATH), PATHINFO_EXTENSION);
             if (empty($extension)) {
@@ -421,10 +421,10 @@ class GeneralService
                 return config('settings.placeholderImgFull');
             }
             return str_replace('storage/app/public/', 'storage/', $relativePath);
-//        } catch (Exception $e) {
-//            \Log::info("catch ");
-//            return config('settings.placeholderImgFull');
-//        }
+        } catch (Exception $e) {
+            \Log::info("catch ");
+            return config('settings.placeholderImgFull');
+        }
     }
 
 

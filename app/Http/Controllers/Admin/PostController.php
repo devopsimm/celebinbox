@@ -49,6 +49,7 @@ class  PostController extends Controller
 //            $filters['publish_status'] = [1];
         }
         $posts = $postService->index($request,'detailed',null,false,$filters);
+    //    dd($posts);
         $feeds = Feed::all();
 
         $categories = Category::with('childCategories')->whereNull('parent_id')->orWhere('parent_id','0')->get();
@@ -286,6 +287,33 @@ class  PostController extends Controller
 
 
 
+    public function revertOriginal(Request $request,$id){
+        $post = Post::find($id);
+        if (!$post){ return abort(404);exit(); }
+        if ($post->org_title != null){
+            $post->title = $post->org_title;
+            $post->is_title_rephrased = 0;
+        }
+
+        if ($post->org_excerpt != null){
+            $post->excerpt = $post->org_title;
+            $post->is_excerpt_rephrased = 0;
+        }
+
+        if ($post->description_org != null){
+            $post->description = $post->description_org;
+            $post->is_rephrase = 0;
+        }
+
+
+        $post->save();
+
+        return redirect()->route('feed-posts.edit',$post);
+
+
+    }
+
+
 
 
 
@@ -297,6 +325,10 @@ class  PostController extends Controller
         $serviceImg = $this->gService->uploadImgTest($request->image,'posts/featureImages','postThumbnails');
         dd($request->all());
     }
+
+
+
+
 
 
 }
