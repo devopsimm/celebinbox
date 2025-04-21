@@ -76,4 +76,8 @@ class FeedsController extends Controller
 
 
     }
+
+    public function removeFeed(){
+
+    }
 }

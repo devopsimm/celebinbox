@@ -220,7 +220,22 @@
                     <ul style="margin-top: 0 !important;">
                         @foreach($relatedPosts as $post)
                             <li>
-                                @include('layouts.partials.web.postThumbnailSmall', ['post' => $post])
+                                <div class="imgList">
+                                    <a href="{{ route('slugPage',$post->id.'-'.$post->slug) }}"
+                                       title="{{ $post->title }}" class="open-section">
+                                        <img class="lazyload" alt="{{ $post->title }}"
+                                             title="{{ $post->title }} "
+                                             src="{{ config('settings.placeholderImg100') }}"
+                                             data-src="{{ Helper::getFeaturedImg(['post'=>$post],'370X222') }}"
+                                             width="370" height="222">
+                                    </a>
+                                </div>
+                                <div class="contentList">
+                                    <a href="{{ route('slugPage',$post->id.'-'.$post->slug) }}"
+                                       title="{{ $post->title }}" class="open-section">
+                                        {{ $post->title }} </a>
+                                </div>
+
                             </li>
                         @endforeach
 
