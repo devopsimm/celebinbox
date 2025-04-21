@@ -185,6 +185,7 @@ class GeneralService
             mkdir($dirPath.$path, 0777,true);
             chmod($dirPath.$path,0777);
         }
+        dd($dirPath.$path);
         chmod($dirPath.$path,0777);
         $image->storeAs('public/' . $path, $fileName);
         $mainImg = 'storage/' . $path . $fileName;
