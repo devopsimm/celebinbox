@@ -39,7 +39,7 @@ class AiService
                     'content' => $prompt,
                 ]
             ],
-            'max_tokens' => 1500, // Adjust token limit
+            'max_tokens' => 3000, // Adjust token limit
         ]);
 
         if ($response->successful()) {
