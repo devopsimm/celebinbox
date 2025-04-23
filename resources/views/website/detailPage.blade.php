@@ -122,22 +122,22 @@
 @section('content')
     <div class="detail_page">
         <div class="container">
-            <div style="margin: 0px auto 10px; clear: both; text-align: center; float: left; width: 100%;">
-                <div style="width: 330px;display: inline-block;border: 2px solid #7c7c7c; padding: 10px 20px; text-align: left; margin: 0 auto; border-radius: 10px;">
-                    <div style="margin-bottom: 10px;font-size: 18px; font-weight: bold; text-align: left;">Trending</div>
-                    <ul class="listingMain" style=" margin-left: 10px;">
+{{--            <div style="margin: 0px auto 10px; clear: both; text-align: center; float: left; width: 100%;">--}}
+{{--                <div style="width: 330px;display: inline-block;border: 2px solid #7c7c7c; padding: 10px 20px; text-align: left; margin: 0 auto; border-radius: 10px;">--}}
+{{--                    <div style="margin-bottom: 10px;font-size: 18px; font-weight: bold; text-align: left;">Trending</div>--}}
+{{--                    <ul class="listingMain" style=" margin-left: 10px;">--}}
 
-                        @foreach($sideBarRelatedPosts as $post)
-                            <li style="list-style: disc;">
-                                <div class="contentList" style="width: 100%;">
-                                    <a href="{{ route('slugPage',$post->id.'-'.$post->slug) }}"
-                                       class="open-section" style="height: auto;text-decoration:underline;">{{ $post->title }}</a>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+{{--                        @foreach($sideBarRelatedPosts as $post)--}}
+{{--                            <li style="list-style: disc;">--}}
+{{--                                <div class="contentList" style="width: 100%;">--}}
+{{--                                    <a href="{{ route('slugPage',$post->id.'-'.$post->slug) }}"--}}
+{{--                                       class="open-section" style="height: auto;text-decoration:underline;">{{ $post->title }}</a>--}}
+{{--                                </div>--}}
+{{--                            </li>--}}
+{{--                        @endforeach--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="hdStyle">
                 <h3 class="title_category"><a href="{{ route('categoryPage',$post->MainCategory->slug) }}">{{ $post?->MainCategory?->name ?? '-' }}</a></h3>
                 <h1 id="postTit">{{ $post->title }}</h1>
