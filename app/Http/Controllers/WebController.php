@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Services\GeneralService;
 use App\Services\PostService;
+use App\Services\ProductService;
 use App\Services\WebService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -140,6 +141,41 @@ class WebController extends Controller
 
 
     }
+    public function generateCategorySiteMaps($category){
 
+        $PostService = new PostService();
+        $category = $PostService->getCatFromSlug($category);
+
+        if (!$category){ return abort('404');exit(); }
+
+        $g_service = new GeneralService();
+        $siteMap = $g_service->createSiteMap('category',$category);
+        if (!$siteMap){ return abort('404');exit(); }
+
+        return  $siteMap;
+    }
+    public function generateMainSiteMaps(){
+        $g_service = new GeneralService();
+        $siteMap = $g_service->createSiteMap('website');
+        if (!$siteMap){ return abort('404');exit(); }
+        return  $siteMap;
+    }
+    public function generateMonthlySiteMaps($m,$y){
+
+        $g_service = new GeneralService();
+        $siteMap = $g_service->createSiteMap('DynamicMonthly',false,$m,$y);
+
+        if (!$siteMap){ return abort('404');exit(); }
+        return  $siteMap;
+    }
+    public function generateLatestSiteMap(){
+
+
+        $g_service = new GeneralService();
+        $siteMap = $g_service->createSiteMap('latest',false);
+
+        if (!$siteMap){ return abort('404');exit(); }
+        return  $siteMap;
+    }
 }
 

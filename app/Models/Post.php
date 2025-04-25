@@ -185,6 +185,9 @@ class Post extends Model
         return $this->belongsToMany('App\Models\Author');
     }
 
+    public function getPostSlugAttribute(){
+        return $this->id.'-'.$this->slug;
+    }
 
 
 }

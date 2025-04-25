@@ -233,6 +233,22 @@
                         @endforeach
                 </div>
                 @endif
+                <div class="form-group">
+                    {{ Form::label('Source Type') }}
+                    <select id="sourceType" name="source_type" class="form-control">
+                        @foreach(config('settings.postSourceType') as $key=>$val)
+                            <option value="{{ $key }}" {{ ($key == $post->type)?'selected':'' }}>{{ $val }}</option>
+                        @endforeach
+                    </select>
+                    {!! $errors->first('source_type', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('authors') }}
+                    <select multiple name="author_ids[]" id="authors" required class="form-control">
+
+                    </select>
+                    {!! $errors->first('author_id', '<div class="invalid-feedback">:message</p>') !!}
+                </div>
 
 
 

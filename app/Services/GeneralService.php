@@ -653,6 +653,110 @@ class GeneralService
         $post->save();
     }
 
+    public function createSiteMap($type = 'daily',$category=false,$month=false,$year=false)
+    {
+        if ($type == 'daily'){
+            $categories = Category::where('type','2')->get();
+            if (count($categories)){
+                foreach ($categories as $category){
+                    // \DB::enableQueryLog();
+                    $posts = $category->publishedPostsToNow()->latest()->limit(200)->get();
+                    // dd(\DB::getQueryLog());
+                    if (count($posts)){
+                        $view = view('sitemaps.categoryPosts',compact('posts','category'));
+                        file_put_contents(public_path('site-maps/categories/'.$category->slug.'.xml'),$view);
+                    }
+                }
+            }
+            $brands = Brand::all();
+            if (count($brands)){
+                $view = view('sitemaps.brands',compact('brands'));
+                file_put_contents(public_path('site-maps/brands.xml'),$view);
+            }
+            $productTypes = ProductType::all();
+            if (count($productTypes)){
+                foreach ($productTypes as $type){
+                    $products = $type->publishProducts;//()->latest()->limit(200)->get();
+                    if (count($products)){
+                        $view = view('sitemaps.productType',compact('products'));
+                        file_put_contents(public_path('site-maps/product-categories/'.$type->slug.'.xml'),$view);
+                    }
+                }
+            }
+
+
+        }
+
+        if ($type == 'monthly'){
+            $date = Carbon::now();
+            $year = $date->format('Y');
+            $month = $date->format('m');
+
+            $domain = 'https://gadinsider.com';
+            $categories = Category::where('parent_id','0')->orWhere('parent_id',null)->with('childCategories')->get();
+            $view = view('sitemaps.main',compact('domain','categories'));
+            file_put_contents(public_path('site-maps/sitemap.xml'),$view);
+
+            $posts = Post::whereMonth('posted_at', Carbon::now()->month)->where('is_published','1')->get();
+            if (count($posts)){
+                $view = view('sitemaps.monthly',compact('posts'));
+                file_put_contents(public_path('site-maps/'.$month.'-'.$year.'.xml'),$view);
+            }
+        }
+        if ($type == 'main'){
+            $date = Carbon::now();
+            $year = $date->format('Y');
+            $month = $date->format('m');
+
+            $domain = 'https://gadinsider.com';
+            $categories = Category::where('parent_id','0')->orWhere('parent_id',null)->with('childCategories')->get();
+            $view = view('sitemaps.main',compact('domain','categories'));
+            file_put_contents(public_path('site-maps/sitemap.xml'),$view);
+        }
+
+
+        if ($type == 'category'){
+
+            $posts = $category->publishedPostsToNow()->latest()->get();
+            if (count($posts)){
+                //  $view = view('sitemaps.categoryPosts',compact('posts','category'));
+                return response()->view('sitemaps.categoryPosts', [
+                    'posts' => $posts,
+                    'category' =>$category,
+                ])->header('Content-Type', 'text/xml');
+            }else{
+                return false;
+            }
+        }
+
+
+        if ($type == 'website'){
+            $domain = 'https://gadinsider.com';
+            $categories = Category::where('parent_id','0')->orWhere('parent_id',null)->with('childCategories')->get();
+            return response()->view('sitemaps.main', [
+                'domain' => $domain,
+                'categories' => $categories,
+            ])->header('Content-Type', 'text/xml');
+        }
+        if ($type == 'DynamicMonthly'){
+            $posts = Post::whereMonth('posted_at', $month)->where('is_published','1')->get();
+            if (count($posts)){
+                return response()->view('sitemaps.monthly', [
+                    'posts' => $posts,
+                ])->header('Content-Type', 'text/xml');
+            }
+        }
+        if ($type == 'latest'){
+            $posts = Post::where('is_published','1')->orderBy('id','desc')->limit(200)->get();
+            if (count($posts)){
+                return response()->view('sitemaps.latest', [
+                    'posts' => $posts,
+                ])->header('Content-Type', 'text/xml');
+            }
+        }
+
+
+    }
 
 
 }

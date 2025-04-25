@@ -61,6 +61,14 @@
                                     </a>
                                 </li>
                             @endcan
+                            @canany(['manageAuthors'])
+                                <li>
+                                    <a href="{{ route('authors.index') }}">
+                                        <span class="nav-icon no-fade"><i class="fa fa-genderless" aria-hidden="true"></i></span>
+                                        <span class="nav-text">Authors</span>
+                                    </a>
+                                </li>
+                            @endcan
                             @canany(['categories.view','categories.create','categories.edit','categories.delete'])
                                 <li>
                                     <a href="{{ route('categories.index') }}">

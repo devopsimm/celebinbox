@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\DevController;
+use App\Http\Controllers\Admin\AuthorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,15 @@ use App\Http\Controllers\DevController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::get('latest-site-map.xml',[WebController::class,'generateLatestSiteMap'])->name('latestSiteMap');
+
+Route::get('site-maps/categories/{category}.xml',[WebController::class,'generateCategorySiteMaps'])->name('catSiteMap');
+Route::get('site-maps/sitemap.xml',[WebController::class,'generateMainSiteMaps']);
+Route::get('site-maps/{m}-{y}.xml',[WebController::class,'generateMonthlySiteMaps']);
+
+
 
 Route::group(['prefix'=>'admin'], function () {
     require __DIR__.'/auth.php';
@@ -82,8 +92,9 @@ Route::group(['middleware'=>['auth','twoFactor'],'prefix'=>'admin'], function ()
     Route::get('/content-positions/{id}/products', [ContentPositionController::class, 'contentProducts'])->name('contentProducts');
     Route::post('/content-positions/add-posts', [ContentPositionController::class, 'addContentPositionPost'])->name('addContentPositionPost');
     Route::post('/content-positions/remove-posts', [ContentPositionController::class, 'removeContentPositionPost'])->name('removeContentPositionPost');
-
-
+    Route::resource('authors', AuthorController::class);
+    Route::post('/posts/getAuthorsBySourceType', [PostController::class, 'getAuthorsBySourceType'])->name('getAuthorsBySourceType');
+    Route::post('/posts/getAuthorsBySourceTypeForLiveBlog', [PostController::class, 'getAuthorsBySourceTypeForLiveBlog'])->name('getAuthorsBySourceTypeForLiveBlog');
 
 });
 Route::group(['prefix' => 'dev'], function () {

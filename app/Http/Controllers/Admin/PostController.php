@@ -211,6 +211,10 @@ class  PostController extends Controller
         $postService = new PostService();
         return $postService->getAuthorsBySourceType($request);
     }
+    public function getAuthorsBySourceTypeForLiveBlog(Request $request){
+        $postService = new PostService();
+        return $postService->getAuthorsBySourceTypeForLiveBlog($request);
+    }
     public function viewAdmin($slug){
         $service = new PostService();
         $slug = explode('-',$slug);

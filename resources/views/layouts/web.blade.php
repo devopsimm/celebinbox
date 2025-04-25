@@ -25,16 +25,10 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ url('website/fav/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
-    @stack('metas')
+
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RMFTG9NG1N"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RMFTG9NG1N');
-</script>
+    @stack('metas')
 </head>
 <body>
 

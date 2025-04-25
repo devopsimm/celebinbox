@@ -177,6 +177,7 @@ class PostService
     public function save($request,$userId){
         $sendNotification = false;
 
+
         $postId = $request->post_edit_id;
         $post = Post::find($postId);
 
@@ -194,6 +195,9 @@ class PostService
             'status'=>1
         ];
 
+        if ($post->user_id == 1){
+            $data['user_id'] = $userId;
+        }
         if ($post->user_id == null){
             $data['user_id'] = $userId;
         }
@@ -246,11 +250,13 @@ class PostService
         $this->saveCategories($post,$request->categories);
 
 
-//        $this->saveAuthors($post,$request->author_ids);
+        $this->saveAuthors($post,$request->author_ids);
 
         $this->saveRelatedPosts($post,$request->relatedPostIds);
 
         $this->saveContentPositions($request->post_edit_id,$request->content_positions);
+
+
 
         Post::where('id',$postId)->update($data);
 //        if ($sendNotification){
@@ -961,6 +967,19 @@ class PostService
         }
         return $data;
     }
+    public function getAuthorsBySourceTypeForLiveBlog($request){
+        $sourceType = $request->sourceType;
+        $data = [];
+        $authors = Author::where('type',$request->sourceType)->pluck('name','id');
+        foreach ($authors as $id=>$val) {
+            $author = [
+                'value' => $val,
+                'selected' => 'no',
+            ];
+            $data[$id] = $author;
+        }
+        return $data;
+    }
     public function getPostByIdsByPosts($posts,$type='array'){
         $array = [];
         foreach ($posts as $post)
@@ -1381,8 +1400,20 @@ class PostService
 
     }
 
+    public function getCatFromSlug($slug){
+        $cat = Category::where('slug',$slug)->first();
+        return ($cat) ? $cat : false;
+    }
+    public function getCatFromId($id){
+        $cat = Category::where('id',$id)->first();
+        return ($cat) ? $cat : false;
+    }
 
-
+    public function getSubCat($mainCate,$subCat){
+        if (!$mainCate){ return  false; }
+        $cat = Category::where('parent_id',$mainCate->id)->where('slug',$subCat)->first();
+        return ($cat) ? $cat : false;
+    }
     public function getRandomPost($count,$excludingIds=[]): array
     {
         $PostIds = Post::whereNotIn('id',$excludingIds)

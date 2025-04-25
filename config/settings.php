@@ -26,6 +26,11 @@ return [
         '2'=>'Deleted',
         '3'=>'Scheduled',
     ],
+    'authorType'=>[
+        '1'=>'News Agency',
+        '2'=>'Video',
+        '3'=>'Reporter',
+    ],
 
     'socialSharing'=>[
 //        '1'=>'Fb Share',

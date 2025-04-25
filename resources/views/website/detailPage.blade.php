@@ -105,10 +105,10 @@
             'update_date':'{{ \Carbon\Carbon::parse($updatedAt)->format('d-M-Y') }}',
             'article_word_count':{{ str_word_count(strip_tags($description)) }} ,
             'desk_sub':"{{ $post->user->name }}" ,
-            {{--'author_name':"{{ (count($post->authors))?$post->authors[0]->name:'NA' }}",--}}
+            'author_name':"{{ $post->user->name }}" {{-- "{{ (count($post->authors))?$post->authors[0]->name:'NA' }}" --}},
             'page_category':"{{ ucfirst($post->MainCategory->name) }}",
             'article_age':'{{ \Carbon\Carbon::parse($post->posted_at)->diffForHumans() }}' ,
-            {{--'author_id':{{ (count($post->authors))?$post->authors[0]->id:'NA' }} , //12344--}}
+            'author_id':{{ (count($post->authors))?$post->authors[0]->id:'NA' }} , //12344
             'story_id':{{ $post->id }} , //7823
             'video_embed':'{{ ($post->show_video_icon == 1) ? "Yes" : "No" }}' ,
             'ad_present' : 'No',

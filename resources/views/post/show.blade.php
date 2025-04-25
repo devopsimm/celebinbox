@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <x-slot name="header">
-        Create Posts
+        Show Posts
     </x-slot>
     <section class="content container-fluid">
         <div class="row">

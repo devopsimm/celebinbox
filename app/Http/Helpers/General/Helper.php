@@ -106,6 +106,16 @@ class Helper{
 
     }
 
+    public static function getOrgFileUrl($file,$modal=false){
+        $gService = new GeneralService();
+        if ($file == null){
+            return '';
+        }
+
+        return  url($file);
+
+    }
+
     public static function convertDateFormat($date,$convertTo){
         $date = Carbon::parse($date);
 
