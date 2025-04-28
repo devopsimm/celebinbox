@@ -4,7 +4,7 @@
         <loc>https://www.celebinbox.com</loc>
     </url>
     @foreach($categories as $category)
-        @if($category->id != 14)
+
             <url>
                 <loc>{{ route('slugPage',$category->slug) }}</loc>
             </url>
@@ -15,7 +15,7 @@
                     </url>
                 @endforeach
             @endif
-        @endif
+
     @endforeach
 
     <url>
