@@ -117,7 +117,7 @@
             'author_name': "{{ $post->user->name }}" {{-- "{{ (count($post->authors))?$post->authors[0]->name:'NA' }}" --}},
             'page_category': "{{ ucfirst($post->MainCategory->name) }}",
             'article_age': '{{ \Carbon\Carbon::parse($post->posted_at)->diffForHumans() }}',
-            'author_id': {{ (($post->authors) && count($post->authors) !== null?$post->authors[0]->id:'NA' }}, //12344
+          
             'story_id': {{ $post->id }}, //7823
             'video_embed': '{{ ($post->show_video_icon == 1) ? "Yes" : "No" }}',
             'ad_present': 'No',
