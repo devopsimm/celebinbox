@@ -3,24 +3,27 @@
     <title>{{ $post->title }}</title>
     <meta name='TITLE' content="{{ $post->title }}">
     <meta name="description" content="{{ $post->excerpt }}">
-    <meta name="keywords" content="Meghan Markle, Prince Harry, Kate Middleton, Prince William, Drake, Taylor Swift, Zendaya, Bad Bunny, Ariana Grande, Billie Eilish, Lady Gaga, Tom Holland, Selena Gomez, Travis Scott, Kim Kardashian, Kanye West">
+    <meta name="keywords"
+          content="Meghan Markle, Prince Harry, Kate Middleton, Prince William, Drake, Taylor Swift, Zendaya, Bad Bunny, Ariana Grande, Billie Eilish, Lady Gaga, Tom Holland, Selena Gomez, Travis Scott, Kim Kardashian, Kanye West">
 
 @endpush
 @push('css')
-    <link rel="stylesheet" type="text/css" href="{{ url('website/detail.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('website/detail.css') }}"/>
 @endpush
 
 @push('metas')
-    <meta property="og:title" content="{{ (isset($metas['meta_title']) && $metas['meta_title']->value != '')?$metas['meta_title']->value:$post->title }}" />
-    <meta property="og:image" content="{{ Helper::getFileUrl($post->featured_image,$post,'post') }}" />
-    <meta property="og:description" content="{{ (isset($metaDescription))? $metaDescription : $post->excerpt }}" />
+    <meta property="og:title"
+          content="{{ (isset($metas['meta_title']) && $metas['meta_title']->value != '')?$metas['meta_title']->value:$post->title }}"/>
+    <meta property="og:image" content="{{ Helper::getFileUrl($post->featured_image,$post,'post') }}"/>
+    <meta property="og:description" content="{{ (isset($metaDescription))? $metaDescription : $post->excerpt }}"/>
     <meta property="og:url" content="{{ route('slugPage',$post->slug.'-'.$post->id) }}">
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="article"/>
     <meta property="og:site_name" content="CelebInbox">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@Celebinbox">
-    <meta name="twitter:creator" content="@Web Desk" />
-    <meta name="twitter:title" content="{{ (isset($metas['meta_title']) && $metas['meta_title']->value != '')?$metas['meta_title']->value:$post->title }}">
+    <meta name="twitter:creator" content="@Web Desk"/>
+    <meta name="twitter:title"
+          content="{{ (isset($metas['meta_title']) && $metas['meta_title']->value != '')?$metas['meta_title']->value:$post->title }}">
     <meta name="twitter:description" content="{{ (isset($metaDescription))? $metaDescription : $post->excerpt }}">
     <meta name="twitter:image" content="{{ Helper::getFileUrl($post->featured_image,$post,'post') }}">
 
@@ -48,7 +51,8 @@
                               "name":"{{ $post->authors[0]->name }}",
                   "url":""
               },
-              @endif
+
+        @endif
 
         "publisher": {
           "@type": "Organization",
@@ -63,56 +67,61 @@
         }
 
 
-        </script>
-{{--    <script type="application/ld+json">--}}
-{{--    {--}}
-{{--      "@context": "https://schema.org",--}}
-{{--      "@type": "WebSite",--}}
-{{--      "url": "https://www.calebinbox.com/",--}}
-{{--      "potentialAction": {--}}
-{{--        "@type": "SearchAction",--}}
-{{--        "target": "https://www.calebinbox.com/search?q={search_term_string}",--}}
-{{--        "query-input": "required name=search_term_string"--}}
-{{--      }--}}
-{{--    }--}}
-{{--    </script>--}}
-{{--    <script type="application/ld+json">--}}
-{{--        {--}}
-{{--            "@context":"https://schema.org",--}}
-{{--            "@type":"Organization",--}}
-{{--            "name":"CelebInbox",--}}
-{{--            "url":"https://www.celebinbox.com/",--}}
-{{--            "logo":"https://www.gadinsider.com/website/logo.png",--}}
-{{--            "sameAs":--}}
-{{--            [--}}
-{{--            "https://www.facebook.com/Gadinsider/",--}}
-{{--            "https://x.com/Gadinsidernews",--}}
-{{--            "https://www.youtube.com/@GadInsider"--}}
-{{--            ]--}}
-{{--        }--}}
-{{--    </script>--}}
+
+    </script>
+    {{--    <script type="application/ld+json">--}}
+    {{--    {--}}
+    {{--      "@context": "https://schema.org",--}}
+    {{--      "@type": "WebSite",--}}
+    {{--      "url": "https://www.calebinbox.com/",--}}
+    {{--      "potentialAction": {--}}
+    {{--        "@type": "SearchAction",--}}
+    {{--        "target": "https://www.calebinbox.com/search?q={search_term_string}",--}}
+    {{--        "query-input": "required name=search_term_string"--}}
+    {{--      }--}}
+    {{--    }--}}
+    {{--    </script>--}}
+    {{--    <script type="application/ld+json">--}}
+    {{--        {--}}
+    {{--            "@context":"https://schema.org",--}}
+    {{--            "@type":"Organization",--}}
+    {{--            "name":"CelebInbox",--}}
+    {{--            "url":"https://www.celebinbox.com/",--}}
+    {{--            "logo":"https://www.gadinsider.com/website/logo.png",--}}
+    {{--            "sameAs":--}}
+    {{--            [--}}
+    {{--            "https://www.facebook.com/Gadinsider/",--}}
+    {{--            "https://x.com/Gadinsidernews",--}}
+    {{--            "https://www.youtube.com/@GadInsider"--}}
+    {{--            ]--}}
+    {{--        }--}}
+    {{--    </script>--}}
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
         gtag('config', 'G-RMFTG9NG1N', {
-            'language':'English',
-            'page_type':'Detail Page' ,
-            'detail_page_type':'{{ ($post->show_video_icon == 1) ? "Video Detail" : "Article Detail" }}' ,
-            'sub_category':'{{ ucfirst($post->MainCategory->name) }}' ,
-            'publish_date':'{{ \Carbon\Carbon::parse($post->posted_at)->format('d-M-Y') }}',
-            'publish_time':'{{ \Carbon\Carbon::parse($post->posted_at)->format('H:i:s') }}',
-            'update_date':'{{ \Carbon\Carbon::parse($updatedAt)->format('d-M-Y') }}',
-            'article_word_count':{{ str_word_count(strip_tags($description)) }} ,
-            'desk_sub':"{{ $post->user->name }}" ,
-            'author_name':"{{ $post->user->name }}" {{-- "{{ (count($post->authors))?$post->authors[0]->name:'NA' }}" --}},
-            'page_category':"{{ ucfirst($post->MainCategory->name) }}",
-            'article_age':'{{ \Carbon\Carbon::parse($post->posted_at)->diffForHumans() }}' ,
-
-            'story_id':{{ $post->id }} , //7823
-            'video_embed':'{{ ($post->show_video_icon == 1) ? "Yes" : "No" }}' ,
-            'ad_present' : 'No',
-            'Contributors' : "",
+            'language': 'English',
+            'page_type': 'Detail Page',
+            'detail_page_type': '{{ ($post->show_video_icon == 1) ? "Video Detail" : "Article Detail" }}',
+            'sub_category': '{{ ucfirst($post->MainCategory->name) }}',
+            'publish_date': '{{ \Carbon\Carbon::parse($post->posted_at)->format('d-M-Y') }}',
+            'publish_time': '{{ \Carbon\Carbon::parse($post->posted_at)->format('H:i:s') }}',
+            'update_date': '{{ \Carbon\Carbon::parse($updatedAt)->format('d-M-Y') }}',
+            'article_word_count': {{ str_word_count(strip_tags($description)) }},
+            'desk_sub': "{{ $post->user->name }}",
+            'author_name': "{{ $post->user->name }}" {{-- "{{ (count($post->authors))?$post->authors[0]->name:'NA' }}" --}},
+            'page_category': "{{ ucfirst($post->MainCategory->name) }}",
+            'article_age': '{{ \Carbon\Carbon::parse($post->posted_at)->diffForHumans() }}',
+            'author_id': {{ (($post->authors) && count($post->authors) !== null?$post->authors[0]->id:'NA' }}, //12344
+            'story_id': {{ $post->id }}, //7823
+            'video_embed': '{{ ($post->show_video_icon == 1) ? "Yes" : "No" }}',
+            'ad_present': 'No',
+            'Contributors': "",
         });
     </script>
 @endpush
@@ -122,24 +131,26 @@
 @section('content')
     <div class="detail_page">
         <div class="container">
-{{--            <div style="margin: 0px auto 10px; clear: both; text-align: center; float: left; width: 100%;">--}}
-{{--                <div style="width: 330px;display: inline-block;border: 2px solid #7c7c7c; padding: 10px 20px; text-align: left; margin: 0 auto; border-radius: 10px;">--}}
-{{--                    <div style="margin-bottom: 10px;font-size: 18px; font-weight: bold; text-align: left;">Trending</div>--}}
-{{--                    <ul class="listingMain" style=" margin-left: 10px;">--}}
+            {{--            <div style="margin: 0px auto 10px; clear: both; text-align: center; float: left; width: 100%;">--}}
+            {{--                <div style="width: 330px;display: inline-block;border: 2px solid #7c7c7c; padding: 10px 20px; text-align: left; margin: 0 auto; border-radius: 10px;">--}}
+            {{--                    <div style="margin-bottom: 10px;font-size: 18px; font-weight: bold; text-align: left;">Trending</div>--}}
+            {{--                    <ul class="listingMain" style=" margin-left: 10px;">--}}
 
-{{--                        @foreach($sideBarRelatedPosts as $post)--}}
-{{--                            <li style="list-style: disc;">--}}
-{{--                                <div class="contentList" style="width: 100%;">--}}
-{{--                                    <a href="{{ route('slugPage',$post->id.'-'.$post->slug) }}"--}}
-{{--                                       class="open-section" style="height: auto;text-decoration:underline;">{{ $post->title }}</a>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-{{--                        @endforeach--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            {{--                        @foreach($sideBarRelatedPosts as $post)--}}
+            {{--                            <li style="list-style: disc;">--}}
+            {{--                                <div class="contentList" style="width: 100%;">--}}
+            {{--                                    <a href="{{ route('slugPage',$post->id.'-'.$post->slug) }}"--}}
+            {{--                                       class="open-section" style="height: auto;text-decoration:underline;">{{ $post->title }}</a>--}}
+            {{--                                </div>--}}
+            {{--                            </li>--}}
+            {{--                        @endforeach--}}
+            {{--                    </ul>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
             <div class="hdStyle">
-                <h3 class="title_category"><a href="{{ route('categoryPage',$post->MainCategory->slug) }}">{{ $post?->MainCategory?->name ?? '-' }}</a></h3>
+                <h3 class="title_category"><a
+                        href="{{ route('categoryPage',$post->MainCategory->slug) }}">{{ $post?->MainCategory?->name ?? '-' }}</a>
+                </h3>
                 <h1 id="postTit">{{ $post->title }}</h1>
                 <h2 class="description">{{ $post->excerpt }}</h2>
                 <div class="aut_share">
@@ -155,31 +166,31 @@
                         <ul>
                             <li>
                                 <a href="https://www.facebook.com/sharer.php?u={{ route('slugPage',$post->id.'-'.$post->slug) }}"
-                                    title="Facebook"><img
+                                   title="Facebook"><img
                                         src="{{ url('website/facebook-detail.svg') }}"
                                         alt="facebook" width="30" height="30"></a>
                             </li>
                             <li>
                                 <a href="https://twitter.com/share?text={{ $post->title }}&url={{ route('slugPage',$post->id.'-'.$post->slug) }}"
-                                    title="Twitter"><img
+                                   title="Twitter"><img
                                         src="{{ url('website/twitter-detail.svg') }}"
                                         alt="twitter" width="30" height="30"></a>
                             </li>
                             <li>
                                 <a href="https://api.whatsapp.com/send?text={{ $post->title }}-{{ route('slugPage',$post->id.'-'.$post->slug) }}"
-                                    title="Whatsapp"><img
+                                   title="Whatsapp"><img
                                         src="{{ url('website/whatsapp-detail.svg') }}"
                                         alt="whatsapp" width="30" height="30"></a>
                             </li>
                             <li>
                                 <a href="https://api.whatsapp.com/send?text={{ $post->title }}-{{ route('slugPage',$post->id.'-'.$post->slug) }}"
-                                    title="Whatsapp"><img
+                                   title="Whatsapp"><img
                                         src="{{ url('website/pinterest-detail.svg') }}"
                                         alt="whatsapp" width="30" height="30"></a>
                             </li>
                             <li>
                                 <a href="https://api.whatsapp.com/send?text={{ $post->title }}-{{ route('slugPage',$post->id.'-'.$post->slug) }}"
-                                    title="Whatsapp"><img
+                                   title="Whatsapp"><img
                                         src="{{ url('website/email-detail.svg') }}"
                                         alt="whatsapp" width="30" height="30"></a>
                             </li>
@@ -210,11 +221,12 @@
                 </div>
 
             </div>
-                @if(count($relatedPosts))
+            @if(count($relatedPosts))
                 <div class="moreFrom">
                     <div class="commonHeading">
                         <p class="mt-0"><a class="red"
-                                            href="{{ route('categoryPage',$post->MainCategory->slug) }}">{{ $post?->MainCategory?->name ?? '-' }}</a></p>
+                                           href="{{ route('categoryPage',$post->MainCategory->slug) }}">{{ $post?->MainCategory?->name ?? '-' }}</a>
+                        </p>
                         <span></span>
                     </div>
                     <ul style="margin-top: 0 !important;">
@@ -241,16 +253,16 @@
 
                     </ul>
                 </div>
-                @endif
+            @endif
         </div>
     </div>
 @endsection
 
 @push('scripts')
     <script>
-        $('figcaption').prop('contenteditable','false');
+        $('figcaption').prop('contenteditable', 'false');
     </script>
     <style type="text/css">span {
-    font-size: inherit !important;
-}</style>
+            font-size: inherit !important;
+        }</style>
 @endpush
