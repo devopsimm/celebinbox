@@ -19,12 +19,6 @@
     @endforeach
 
     <url>
-        <loc>{{ route('products','mobile-phones') }}</loc>
-    </url>
-    <url>
-        <loc>{{ route('products','laptops') }}</loc>
-    </url>
-    <url>
         <loc>{{ route('faq') }}</loc>
     </url>
     <url>

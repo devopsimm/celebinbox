@@ -114,6 +114,10 @@ Route::group(['middleware'=>['throttle:120,1']], function () {
     Route::get('/load-more-posts/{type?}/{id?}',[WebController::class,'loadMorePosts'])->name('loadMorePosts');
     Route::get('/{slug}', [WebController::class, 'postDetails'])->name('slugPage');
 
+    Route::get('/faq', [WebController::class,'faqPage'])->name('faq');
+    Route::get('/about-us', [WebController::class,'aboutUsPage'])->name('aboutUs');
+    Route::get('/privacy-policy', [WebController::class,'policyPage'])->name('policy');
+    Route::get('/contact-us', [WebController::class,'contactUsPage'])->name('contactUs');
 });
 
 

@@ -102,7 +102,7 @@
         function gtag() {
             dataLayer.push(arguments);
         }
-     
+
         gtag('js', new Date());
         gtag('config', 'G-RMFTG9NG1N', {
             'language': 'English',

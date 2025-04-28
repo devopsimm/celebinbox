@@ -177,5 +177,19 @@ class WebController extends Controller
         if (!$siteMap){ return abort('404');exit(); }
         return  $siteMap;
     }
+
+
+    public function faqPage(){
+        return redirect()->route('home');
+    }
+    public function aboutUsPage(){
+        return redirect()->route('home');
+    }
+    public function policyPage(){
+        return redirect()->route('home');
+    }
+    public function contactUsPage(){
+        return redirect()->route('home');
+    }
 }
 
