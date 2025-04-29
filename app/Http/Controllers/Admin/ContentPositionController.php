@@ -140,7 +140,7 @@ class ContentPositionController extends Controller
         }
 
         $contentPosition->update($request->all());
-        Cache::forget('sidebar');
+        Cache::forget('ContentPositions');
 //        $purgeCache = $generalService->clear_cache_cloudflare('contentPosition',0);
         return redirect()->route('content-positions.index')->with('success', 'ContentPosition updated successfully');
     }
