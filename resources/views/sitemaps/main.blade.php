@@ -19,9 +19,6 @@
     @endforeach
 
     <url>
-        <loc>{{ route('faq') }}</loc>
-    </url>
-    <url>
         <loc>{{ route('aboutUs') }}</loc>
     </url>
     <url>

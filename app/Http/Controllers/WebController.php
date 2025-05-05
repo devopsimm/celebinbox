@@ -180,16 +180,32 @@ class WebController extends Controller
 
 
     public function faqPage(){
-        return redirect()->route('home');
+        return view('website.faq');
     }
     public function aboutUsPage(){
-        return redirect()->route('home');
+        return view('website.aboutUs');
+    }
+    public function authorsPage(){
+
+        return view('website.contactUs');
     }
     public function policyPage(){
-        return redirect()->route('home');
+        return view('website.policy');
     }
     public function contactUsPage(){
-        return redirect()->route('home');
+        return view('website.contactUs');
     }
+
+    public function contactUsPost(Request $request){
+        // TODO: Trent SMTP NOT WORKING
+        // Mail::send('mail.contactUs', $request->all(), function($message) {
+        //     $message->to('immcanvateam@gmail.com', 'Gadinsider')->subject('Contact-us | Gadinsider');
+        //     $message->from('immcanvateam@gmail.com','immcanvateam');
+        // });
+        return redirect()->route('contactUs')->with('success','Thank you for contacting us. We will be in touch with you very soon.');
+    }
+
+
+
 }
 

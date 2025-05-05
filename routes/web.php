@@ -26,6 +26,8 @@ use App\Http\Controllers\Admin\AuthorController;
 |
 */
 
+Route::get('/authors', [WebController::class,'authorsPage'])->name('authors');
+
 
 Route::get('latest-site-map.xml',[WebController::class,'generateLatestSiteMap'])->name('latestSiteMap');
 
@@ -118,6 +120,8 @@ Route::group(['middleware'=>['throttle:120,1']], function () {
     Route::get('/about-us', [WebController::class,'aboutUsPage'])->name('aboutUs');
     Route::get('/privacy-policy', [WebController::class,'policyPage'])->name('policy');
     Route::get('/contact-us', [WebController::class,'contactUsPage'])->name('contactUs');
+    Route::post('/contact-us', [WebController::class,'contactUsPost'])->name('contactUsPost');
+
 });
 
 

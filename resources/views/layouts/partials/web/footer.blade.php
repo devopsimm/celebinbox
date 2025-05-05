@@ -13,6 +13,7 @@
                 <li> <a href="{{ route('categoryPage','royal') }}" title="Royal">Royal</a></li>
             </ul>
         </div>
-        <p class="copyRight">© 2025 - Celebinbox. All Rights Reserved.</p>
+        <p class="copyRight">Copyright @ 2025 - CelebInbox.com | All Rights Reserved. |  <a href="{{ route('contactUs') }}">Contact</a> |
+            <a href="{{ route('aboutUs') }}">About</a> | <a href="{{ route('policy') }}">Privacy Policy</a></p>
     </div>
 </footer>
