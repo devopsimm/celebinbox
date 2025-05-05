@@ -22,7 +22,7 @@
                         <div class="col-md-12">
                             <strong>Email</strong>
                             <br>
-                            <p style="margin: 10px 0 6px 0;">info@gadinsider.com</p>
+                            <p style="margin: 10px 0 6px 0;">celebInbox.media@gmail.com</p>
                         </div>
                         <div class="col-md-12">
                             <label for="your-name" class="form-label">Name</label>
