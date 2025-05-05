@@ -13,7 +13,7 @@
                 <li> <a href="<?php echo e(route('categoryPage','royal')); ?>" title="Royal">Royal</a></li>
             </ul>
         </div>
-        <p class="copyRight">Copyright @ 2025 - CelebInbox.com | All Rights Reserved. | <a href="<?php echo e(route('authors')); ?>">Authors</a> | <a href="<?php echo e(route('contactUs')); ?>">Contact</a> |
+        <p class="copyRight">Copyright @ 2025 - CelebInbox.com | All Rights Reserved. |  <a href="<?php echo e(route('contactUs')); ?>">Contact</a> |
             <a href="<?php echo e(route('aboutUs')); ?>">About</a> | <a href="<?php echo e(route('policy')); ?>">Privacy Policy</a></p>
     </div>
 </footer>

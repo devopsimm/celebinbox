@@ -27,6 +27,11 @@ use App\Http\Controllers\Admin\AuthorController;
 */
 
 Route::get('/authors', [WebController::class,'authorsPage'])->name('authors');
+Route::get('/about-us', [WebController::class,'aboutUsPage'])->name('aboutUs');
+Route::get('/privacy-policy', [WebController::class,'authorsPage'])->name('policy');
+Route::get('/contact-us', [WebController::class,'contactUsPage'])->name('contactUs');
+Route::post('/contact-us', [WebController::class,'contactUsPost'])->name('contactUsPost');
+
 
 
 Route::get('latest-site-map.xml',[WebController::class,'generateLatestSiteMap'])->name('latestSiteMap');
@@ -117,10 +122,7 @@ Route::group(['middleware'=>['throttle:120,1']], function () {
     Route::get('/{slug}', [WebController::class, 'postDetails'])->name('slugPage');
 
     Route::get('/faq', [WebController::class,'faqPage'])->name('faq');
-    Route::get('/about-us', [WebController::class,'aboutUsPage'])->name('aboutUs');
-    Route::get('/privacy-policy', [WebController::class,'policyPage'])->name('policy');
-    Route::get('/contact-us', [WebController::class,'contactUsPage'])->name('contactUs');
-    Route::post('/contact-us', [WebController::class,'contactUsPost'])->name('contactUsPost');
+
 
 });
 
