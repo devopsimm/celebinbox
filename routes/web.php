@@ -28,7 +28,7 @@ use App\Http\Controllers\Admin\AuthorController;
 
 Route::get('/authors', [WebController::class,'authorsPage'])->name('authors');
 Route::get('/about-us', [WebController::class,'aboutUsPage'])->name('aboutUs');
-Route::get('/privacy-policy', [WebController::class,'authorsPage'])->name('policy');
+Route::get('/privacy-policy', [WebController::class,'policyPage'])->name('policy');
 Route::get('/contact-us', [WebController::class,'contactUsPage'])->name('contactUs');
 Route::post('/contact-us', [WebController::class,'contactUsPost'])->name('contactUsPost');
 
