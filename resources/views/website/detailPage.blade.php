@@ -182,14 +182,17 @@
                                         src="{{ url('website/whatsapp-detail.svg') }}"
                                         alt="whatsapp" width="30" height="30"></a>
                             </li>
+{{--                            <li>--}}
+{{--                                <a href="https://api.whatsapp.com/send?text={{ $post->title }}-{{ route('slugPage',$post->id.'-'.$post->slug) }}"--}}
+{{--                                   title="Whatsapp"><img--}}
+{{--                                        src="{{ url('website/pinterest-detail.svg') }}"--}}
+{{--                                        alt="whatsapp" width="30" height="30"></a>--}}
+{{--                            </li>--}}
+
+
+
                             <li>
-                                <a href="https://api.whatsapp.com/send?text={{ $post->title }}-{{ route('slugPage',$post->id.'-'.$post->slug) }}"
-                                   title="Whatsapp"><img
-                                        src="{{ url('website/pinterest-detail.svg') }}"
-                                        alt="whatsapp" width="30" height="30"></a>
-                            </li>
-                            <li>
-                                <a href="https://api.whatsapp.com/send?text={{ $post->title }}-{{ route('slugPage',$post->id.'-'.$post->slug) }}"
+                                <a href="mailto:?subject='{{ $post->title }}'&body={{ $post->excerpt }}"
                                    title="Whatsapp"><img
                                         src="{{ url('website/email-detail.svg') }}"
                                         alt="whatsapp" width="30" height="30"></a>
