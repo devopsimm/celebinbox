@@ -211,4 +211,9 @@ class Helper{
         return view('layouts.partials.web.rightSideBar')->with($data);
     }
 
+    public static function getMetaByKey($post, $key){
+
+    }
+
+
 }

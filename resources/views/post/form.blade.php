@@ -440,6 +440,7 @@
         const getChildCategoriesRoute = "{{ route('getChildCategories') }}";
     </script>
     <script src="{{ url('admin-assets/js/post.js') }}"></script>
+    <script sync src="https://www.instagram.com/embed.js"></script>
 
     {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker-standalone.css" integrity="sha512-wT6IDHpm/cyeR3ASxyJSkBHYt9oAvmL7iqbDNcAScLrFQ9yvmDYGPZm01skZ5+n23oKrJFoYgNrlSqLaoHQG9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
     {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker-standalone.min.css" integrity="sha512-L0/PNISezIYAoqFXBGP9EJ4qLH8XF356+Lo92vzloQqk7HUpZ4FN1x1dUOnsUAUjHTSxXxeaD0HXfrANhtJOEA==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}

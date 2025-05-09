@@ -18,6 +18,8 @@
             <ul>
                 <li>
                     <div class="h_featured_pic pic_all largeTop">
+                        <?php echo e(dd($bannerPosts[0])); ?>
+
                         <a href="<?php echo e(route('slugPage',$bannerPosts[0]->id.'-'.$bannerPosts[0]->slug)); ?>"
                            title="<?php echo e($bannerPosts[0]->title); ?>"
                            class="open-section">

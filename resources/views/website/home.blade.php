@@ -20,6 +20,7 @@
             <ul>
                 <li>
                     <div class="h_featured_pic pic_all largeTop">
+                        
                         <a href="{{ route('slugPage',$bannerPosts[0]->id.'-'.$bannerPosts[0]->slug) }}"
                            title="{{ $bannerPosts[0]->title }}"
                            class="open-section">
