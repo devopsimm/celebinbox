@@ -264,6 +264,14 @@
 @push('scripts')
     <script>
         $('figcaption').prop('contenteditable', 'false');
+        if($('.tiktok-embed').length > 0){
+            var scriptElement=document.createElement('script');
+            scriptElement.type = 'text/javascript';
+            scriptElement.setAttribute = 'async';
+            scriptElement.src = 'https://www.tiktok.com/embed.js';
+            document.body.appendChild(scriptElement);
+        }
+
     </script>
     <style type="text/css">span {
             font-size: inherit !important;
