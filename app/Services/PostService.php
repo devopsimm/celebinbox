@@ -144,6 +144,8 @@ class PostService
                 $socialSharing = json_decode($Post->social_sharing);
             }
             $metas = $Post->meta()->where('value','!=','false')->pluck('value','key')->toArray();
+            $descriptionHistoryItems = $this->getDescriptionHistoryItems($Post->meta);
+
             $relatedPosts = $Post->relatedPosts()->pluck('posts.title','posts.id')->toArray();
             $postPositions = ContentPositionDetail::where('model_id',$id)->where('type','1')->pluck('id')->toArray();
 
@@ -164,8 +166,20 @@ class PostService
             'relatedPosts' => $relatedPosts,
             'description'=> $description,
             'descriptionOrg'=>$descriptionOrg,
-            'postPositions' =>$postPositions
+            'postPositions' =>$postPositions,
+            'descriptionHistoryItems' => $descriptionHistoryItems
         ];
+    }
+    public function getDescriptionHistoryItems($metas){
+        $items = [];
+        if (count($metas) != 0){
+            foreach ($metas as $meta){
+                if ($meta->key == 'description'){
+                    $items[] = $meta;
+                }
+            }
+        }
+        return $items;
     }
     public function parseDescriptionForEdit($description){
         $description = str_replace('class="specedit"','class="specedit"  contenteditable="true"',$description);

@@ -85,6 +85,8 @@ Route::group(['middleware'=>['auth','twoFactor'],'prefix'=>'admin'], function ()
     Route::get('/posts/{id}/rephraseTitle/', [PostController::class, 'rephraseTitle'])->name('rephraseTitle');
     Route::get('/posts/{id}/rephraseExcerpt/', [PostController::class, 'rephraseExcerpt'])->name('rephraseExcerpt');
     Route::get('/posts/{id}/revert-original/', [PostController::class, 'revertOriginal'])->name('revertOriginal');
+    Route::get('/posts/{id}/view-history/{metaId}/', [PostController::class, 'viewHistory'])->name('viewHistory');
+    Route::get('/posts/{id}/revert-history/{metaId}/', [PostController::class, 'revertHistory'])->name('revertHistory');
 
 
 
@@ -102,6 +104,7 @@ Route::group(['middleware'=>['auth','twoFactor'],'prefix'=>'admin'], function ()
     Route::resource('authors', AuthorController::class);
     Route::post('/posts/getAuthorsBySourceType', [PostController::class, 'getAuthorsBySourceType'])->name('getAuthorsBySourceType');
     Route::post('/posts/getAuthorsBySourceTypeForLiveBlog', [PostController::class, 'getAuthorsBySourceTypeForLiveBlog'])->name('getAuthorsBySourceTypeForLiveBlog');
+
 
 });
 Route::group(['prefix' => 'dev'], function () {

@@ -46,7 +46,13 @@ class GeneralService
             return "uploadfiles/" . $imageData['folder_name'] . '/' . $name;
         }
     }
+    public function textToSlug($text)
+    {
+        $slug = str_replace(" ", "-", $text);
+        $slug = strtolower($slug);
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $slug);
 
+    }
     public function nameToSlug($request, $name)
     {
 

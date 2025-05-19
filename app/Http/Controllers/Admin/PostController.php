@@ -6,6 +6,7 @@ use App\Http\Helpers\General\Helper;
 use App\Models\Category;
 use App\Models\Feed;
 use App\Models\Post;
+use App\Models\PostMeta;
 use App\Services\AiService;
 use App\Services\AnthropicService;
 use Illuminate\Http\Request;
@@ -187,6 +188,20 @@ class  PostController extends Controller
             ->with('success', 'Post deleted successfully');
     }
 
+    public function viewHistory($id,$metaId){
+        $post = Post::find($id);
+        $meta = PostMeta::find($metaId);
+        return view($this->viewFolder.'.history', compact('post','meta'));
+    }
+    public function revertHistory($id, $metaId){
+        $post = Post::find($id);
+        $meta = PostMeta::find($metaId);
+
+        $post->description = $meta->value;
+        $post->save();
+        return redirect()->route('feed-posts.edit',$post->id);
+    }
+
     public function uploadEditorImages(Request $request){
         $postService = new PostService();
         $data = $postService->uploadEditorImages($request);
@@ -232,6 +247,7 @@ class  PostController extends Controller
     public function rephraseTitle($id): \Illuminate\Http\RedirectResponse
     {
         $service = new PostService();
+        $gService = new GeneralService();
         $post = $service->show($id);
         $aiService = new AiService();
         $title = $post->title;
@@ -240,6 +256,7 @@ class  PostController extends Controller
         if ($titleResponse['choices'][0]['message']['content']){
             $post->org_title = $title;
             $post->title = $titleResponse['choices'][0]['message']['content'];
+            $post->slug = $gService->textToSlug($titleResponse['choices'][0]['message']['content']);
             $post->is_title_rephrased = 1;
             $post->save();
         }
@@ -268,6 +285,7 @@ class  PostController extends Controller
 
     public function rephraseContent($id){
         $service = new PostService();
+        $postMeta = new PostMeta();
         $post = $service->show($id);
         $aiService = new AiService();
 
@@ -276,12 +294,21 @@ class  PostController extends Controller
         $prompt = "Take the given HTML content and rewrite only the text within the tags while keeping all HTML elements, attributes, and images exactly as they are. Ensure the rephrased text is natural, engaging, and flows smoothly, as if written by a professional journalist. The news story should have a human touch, making it compelling and well-structured. Improve readability, fix any grammatical errors, and enhance clarity while maintaining the original meaning. Preserve the tone and context of the content, ensuring it feels authentic and well-articulated. Replace any <a> tags with <span> tags and remove the href attributes, but do not modify the structure or content of any other tags specially Image tag or Figure tag, just update the text.
         {$htmlContent}";
         $response = $aiService->getResponse($prompt);
-       // dd($response);
+
         //$image = $aiService->generateImage($post->title,$post->id,$post->slug);
         if ($response['choices'][0]['message']['content']){
-            $post->description_org = $post->description;
-            $post->description = ($response['choices'][0]['message']['content'] != '')?$response['choices'][0]['message']['content']:$post->description;
-          //  $post->featured_image = $image;
+            $newDescription = ($response['choices'][0]['message']['content'] != '')?$response['choices'][0]['message']['content']:$post->description;
+            if($post->description_org == ''){
+                $post->description_org = $post->description;
+            }
+            $postMeta->create([
+                'post_id'=>$id,
+                'key'=>'description',
+                'value'=>$post->description
+            ]);
+            $post->description = $newDescription;
+
+            //  $post->featured_image = $image;
             $post->is_rephrase = 1;
         }
         $post->save();

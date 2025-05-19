@@ -69,7 +69,10 @@
 
                 <div class="form-group">
                     {{ Form::label('description') }}
-                   <div class="editable" data-oldpostid="false" name="description" data-name="description" data-placeholder="Type some text">
+                    @if(count($descriptionHistoryItems))
+                    <span class="viewHistory btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal" >View History</span>
+                    @endif
+                    <div class="editable" data-oldpostid="false" name="description" data-name="description" data-placeholder="Type some text">
                        <p class="">
                            {!! $description !!}
 
@@ -349,7 +352,68 @@
 
 
 @push('scripts')
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Post History</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    @if(count($descriptionHistoryItems))
+                        <ul class="historyUl">
+                            @foreach($descriptionHistoryItems as $item)
+                                <li>
+                                    <span>
+                                        <b>Saved On:</b>
+                                        <span>{{ $item->created_at }}</span>
+                                    </span>
+                                    <span>
+                                        <a class="btn btn-sm btn-primary" href="{{ route('viewHistory',['id'=>$post->id, 'metaId'=>$item->id]) }}" target="_blank">View</a>
+                                        <a class="btn btn-sm btn-secondary" href="{{ route('revertHistory',['id'=>$post->id, 'metaId'=>$item->id]) }}" >Revert</a>
+                                    </span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
     <style>
+        ul.historyUl li:last-child {
+            border-bottom: none !important;
+        }
+        ul.historyUl li {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        ul.historyUl li a {
+            color: #fff !important;
+        }
+        ul.historyUl {
+            padding: 0;
+        }
+
+        ul.historyUl li {
+            border-bottom: 1px solid #e7e7e7;
+            padding: 10px;
+        }
+        span.viewHistory {
+            float: right;
+            color: #000000;
+        }
         .postCol3 .box-header i {
             position: absolute;
             font-style: normal;
