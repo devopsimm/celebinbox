@@ -13,6 +13,7 @@
                 <div class="box-body">
                 <div class="form-group">
                     {{ Form::label('title') }}
+                    <span class="viewHistory btn btn-sm btn-warning" data-toggle="modal" data-target="#TitleExcerptModal" >View Title/Excerpt History</span>
                     {{ Form::text('title', $post->title, ['required'=>'true','class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Title']) }}
                     {!! $errors->first('title', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
@@ -71,6 +72,7 @@
                     {{ Form::label('description') }}
                     @if(count($descriptionHistoryItems))
                     <span class="viewHistory btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal" >View History</span>
+
                     @endif
                     <div class="editable" data-oldpostid="false" name="description" data-name="description" data-placeholder="Type some text">
                        <p class="">
@@ -386,6 +388,46 @@
 
         </div>
     </div>
+    <div id="TitleExcerptModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Title/Excerpt History</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+                        @if(count($titleExcerptHistoryItems))
+                            <ul class="historyUl">
+                                @foreach($titleExcerptHistoryItems as $item)
+
+                                    <li class="titleHistoryLi">
+                                        <span>
+                                            <b>Saved On:</b>
+                                            <span>{{ $item['title']->created_at }}</span> <br>
+                                            <b>Title:</b>
+                                            <span class="title">{{ $item['title']->value }}</span><br>
+                                            <b>Excerpt:</b>
+                                            <span class="title">{{ $item['excerpt']->value }}</span>
+                                        </span>
+                                        <span>
+{{--                                            <a class="btn btn-sm btn-primary" href="{{ route('viewHistory',['id'=>$post->id, 'metaId'=>$item->id]) }}" target="_blank">View</a>--}}
+                                            <a class="btn btn-sm btn-secondary" href="{{ route('revertTitleHistory',['id'=>$post->id, 'titleId'=>$item['title']->id,'excerptId'=>$item['excerpt']->id]) }}" >Revert</a>
+                                        </span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 
 

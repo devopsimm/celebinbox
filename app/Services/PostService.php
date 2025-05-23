@@ -145,6 +145,9 @@ class PostService
             }
             $metas = $Post->meta()->where('value','!=','false')->pluck('value','key')->toArray();
             $descriptionHistoryItems = $this->getDescriptionHistoryItems($Post->meta);
+            $titleHistoryItems = $this->getTitleHistoryItems($Post->meta);
+            $excerptHistoryItems = $this->getExcerptHistoryItems($Post->meta);
+            $titleExcerptHistoryItems = $this->combineTitleExceptsItems($titleHistoryItems,$excerptHistoryItems);
 
             $relatedPosts = $Post->relatedPosts()->pluck('posts.title','posts.id')->toArray();
             $postPositions = ContentPositionDetail::where('model_id',$id)->where('type','1')->pluck('id')->toArray();
@@ -167,8 +170,56 @@ class PostService
             'description'=> $description,
             'descriptionOrg'=>$descriptionOrg,
             'postPositions' =>$postPositions,
-            'descriptionHistoryItems' => $descriptionHistoryItems
+            'descriptionHistoryItems' => $descriptionHistoryItems,
+            'titleHistoryItems' =>$titleHistoryItems,
+            'excerptHistoryItems' =>$excerptHistoryItems,
+            'titleExcerptHistoryItems'=>$titleExcerptHistoryItems
         ];
+    }
+
+    public function combineTitleExceptsItems($titleHistoryItems,$excerptHistoryItems){
+        $data = [];
+        if (count($titleHistoryItems) && count($excerptHistoryItems)){
+            if (count($titleHistoryItems) == count($excerptHistoryItems)){
+                $i = 0;
+                foreach ($titleHistoryItems as $title){
+                    $item = [
+                        'title'=>$title,
+                        'excerpt'=>$excerptHistoryItems[$i]
+                    ];
+
+                    $data[] = $item;
+                }
+            }
+
+        }
+
+       return $data;
+    }
+
+
+
+    public function getTitleHistoryItems($metas){
+        $items = [];
+        if (count($metas) != 0){
+            foreach ($metas as $meta){
+                if ($meta->key == 'title'){
+                    $items[] = $meta;
+                }
+            }
+        }
+        return $items;
+    }
+    public function getExcerptHistoryItems($metas){
+        $items = [];
+        if (count($metas) != 0){
+            foreach ($metas as $meta){
+                if ($meta->key == 'excerpt'){
+                    $items[] = $meta;
+                }
+            }
+        }
+        return $items;
     }
     public function getDescriptionHistoryItems($metas){
         $items = [];

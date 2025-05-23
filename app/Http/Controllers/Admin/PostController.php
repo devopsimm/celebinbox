@@ -201,6 +201,19 @@ class  PostController extends Controller
         $post->save();
         return redirect()->route('feed-posts.edit',$post->id);
     }
+    public function revertTitleHistory($id, $titleId, $excerptId){
+        $post = Post::find($id);
+        $title = PostMeta::find($titleId);
+        $excerpt = PostMeta::find($excerptId);
+
+        $post->title = $title->value;
+        $post->excerpt = $excerpt->value;
+        $post->save();
+        return redirect()->route('feed-posts.edit',$post->id);
+    }
+
+
+
 
     public function uploadEditorImages(Request $request){
         $postService = new PostService();
@@ -246,6 +259,7 @@ class  PostController extends Controller
 
     public function rephraseTitle($id): \Illuminate\Http\RedirectResponse
     {
+        $postMeta = new PostMeta();
         $service = new PostService();
         $gService = new GeneralService();
         $post = $service->show($id);
@@ -254,6 +268,16 @@ class  PostController extends Controller
         $promptForTitle = "Please rewrite  given post title, it should be seo optimized and dont increase word count. Title:  {$title}";
         $titleResponse = $aiService->getResponse($promptForTitle,'word count should be same');
         if ($titleResponse['choices'][0]['message']['content']){
+
+            if($post->org_excerpt == ''){
+                $post->org_excerpt =$title;
+            }
+            $postMeta->create([
+                'post_id'=>$id,
+                'key'=>'title',
+                'value'=>$title
+            ]);
+
             $post->org_title = $title;
             $post->title = $titleResponse['choices'][0]['message']['content'];
             $post->slug = $gService->textToSlug($titleResponse['choices'][0]['message']['content']);
@@ -265,6 +289,7 @@ class  PostController extends Controller
     }
     public function rephraseExcerpt($id)
     {
+        $postMeta = new PostMeta();
         $service = new PostService();
         $post = $service->show($id);
         $aiService = new AiService();
@@ -273,7 +298,16 @@ class  PostController extends Controller
         $promptForExcerpt = "Please rewrite  given post excerpt, it should be seo optimized and dont increase word count. Excerpt:  {$excerpt}";
         $titleResponse = $aiService->getResponse($promptForExcerpt,'word count should be same');
         if ($titleResponse['choices'][0]['message']['content']){
-            $post->org_excerpt = $excerpt;
+            if($post->org_excerpt == ''){
+                $post->org_excerpt =$excerpt;
+            }
+            $postMeta->create([
+                'post_id'=>$id,
+                'key'=>'excerpt',
+                'value'=>$post->excerpt
+            ]);
+
+
             $post->excerpt = $titleResponse['choices'][0]['message']['content'];
             $post->is_excerpt_rephrased = 1;
             $post->save();

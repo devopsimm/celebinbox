@@ -87,6 +87,7 @@ Route::group(['middleware'=>['auth','twoFactor'],'prefix'=>'admin'], function ()
     Route::get('/posts/{id}/revert-original/', [PostController::class, 'revertOriginal'])->name('revertOriginal');
     Route::get('/posts/{id}/view-history/{metaId}/', [PostController::class, 'viewHistory'])->name('viewHistory');
     Route::get('/posts/{id}/revert-history/{metaId}/', [PostController::class, 'revertHistory'])->name('revertHistory');
+    Route::get('/posts/{id}/revert-title-history/{titleId}/{excerptId}', [PostController::class, 'revertTitleHistory'])->name('revertTitleHistory');
 
 
 
