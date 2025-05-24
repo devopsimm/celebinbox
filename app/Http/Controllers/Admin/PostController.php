@@ -278,7 +278,7 @@ class  PostController extends Controller
                 'value'=>$title
             ]);
 
-            $post->org_title = $title;
+
             $post->title = $titleResponse['choices'][0]['message']['content'];
             $post->slug = $gService->textToSlug($titleResponse['choices'][0]['message']['content']);
             $post->is_title_rephrased = 1;
