@@ -269,8 +269,8 @@ class  PostController extends Controller
         $titleResponse = $aiService->getResponse($promptForTitle,'word count should be same');
         if ($titleResponse['choices'][0]['message']['content']){
 
-            if($post->org_excerpt == ''){
-                $post->org_excerpt =$title;
+            if($post->org_title == ''){
+                $post->org_title =$title;
             }
             $postMeta->create([
                 'post_id'=>$id,
