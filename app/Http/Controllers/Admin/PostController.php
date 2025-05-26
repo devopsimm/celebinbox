@@ -361,7 +361,7 @@ class  PostController extends Controller
         }
 
         if ($post->org_excerpt != null){
-            $post->excerpt = $post->org_title;
+            $post->excerpt = $post->org_excerpt;
             $post->is_excerpt_rephrased = 0;
         }
 
