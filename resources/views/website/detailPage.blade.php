@@ -45,7 +45,7 @@
                 "width": 1200,
                 "height": 630
               },
-              @if($_GET['sss'] == '123')
+              @if(isset($_GET['sss']))
                 {{ dd($post) }}
         @endif
               @if(isset($post->authors[0]))
