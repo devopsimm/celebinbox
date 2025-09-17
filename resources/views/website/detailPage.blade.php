@@ -5,7 +5,7 @@
     <meta name="description" content="{{ $post->excerpt }}">
     <meta name="keywords"
           content="Meghan Markle, Prince Harry, Kate Middleton, Prince William, Drake, Taylor Swift, Zendaya, Bad Bunny, Ariana Grande, Billie Eilish, Lady Gaga, Tom Holland, Selena Gomez, Travis Scott, Kim Kardashian, Kanye West">
-
+    <link rel="canonical" href="{{ route('slugPage',$post->id.'-'.$post->slug) }}" />
 @endpush
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{ url('website/detail.css') }}"/>

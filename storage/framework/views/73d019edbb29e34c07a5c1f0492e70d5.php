@@ -3,7 +3,7 @@
     <meta name='TITLE' content="The Celeb Inbox: Entertainment - Latest Celebrity News, Gossip & Photos - The Celeb Inbox">
     <meta name="description" content="Get the Latest Entertainment, Celebrity News and Updates on Your Favorite Stars, Taylor Swift, Meghan Markle, Prince harry, King Charles">
     <meta name="keywords" content="Meghan Markle, Prince Harry, Kate Middleton, Prince William, Drake, Taylor Swift, Zendaya, Bad Bunny, Ariana Grande, Billie Eilish, Lady Gaga, Tom Holland, Selena Gomez, Travis Scott, Kim Kardashian, Kanye West">
-
+    <link rel="canonical" href="<?php echo e(url('')); ?>" />
 <?php $__env->stopPush(); ?>
 <?php $__env->startPush('css'); ?>
 

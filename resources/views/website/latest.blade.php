@@ -1,6 +1,7 @@
 @extends('layouts.web')
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{ url('website/category.css') }}" />
+    <link rel="canonical" href="{{ route('latest') }}" />
 @endpush
 
 @section('content')
