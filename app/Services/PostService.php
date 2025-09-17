@@ -1244,14 +1244,18 @@ class PostService
     public function getRedisPostByID($id){
         $postExists = Redis::exists('post:'.$id);
 
-        if (isset($_GET['sss'])){
-            dd($postExists); 
-        }
+
 
         if ($postExists) {
             $post = Redis::get('post:'.$id);
             $post = json_decode($post, true);
             $post = (object) $post;
+            if (isset($_GET['sss'])){
+                dd($post);
+            }
+            if (isset($_GET['sssp'])){
+                dd($this->parsePost($post));
+            }
             return  $this->parsePost($post);
         } else {
             $post = Post::where('id',$id)->where('is_published','1')->where('posts.status','!=','0')->with('user','template','categories','meta','tags','MainCategory','relatedPosts')->first();
