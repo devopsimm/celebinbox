@@ -1196,15 +1196,15 @@ class PostService
         }
         $post->tags = $tags;
 //        // Authors
-//        $authors = [];
-//        if (property_exists($post,'authors')) {
-//            if (count($post->authors)) {
-//                foreach ($post->authors as $author) {
-//                    $authors[] = (object)$author;
-//                }
-//            }
-//        }
-//        $post->authors = $authors;
+        $authors = [];
+        if (property_exists($post,'authors')) {
+            if (count($post->authors)) {
+                foreach ($post->authors as $author) {
+                    $authors[] = (object)$author;
+                }
+            }
+        }
+        $post->authors = $authors;
 
         // Meta
         $metas = [];
@@ -1258,7 +1258,7 @@ class PostService
             }
             return  $this->parsePost($post);
         } else {
-            $post = Post::where('id',$id)->where('is_published','1')->where('posts.status','!=','0')->with('user','template','categories','meta','tags','MainCategory','relatedPosts')->first();
+            $post = Post::where('id',$id)->where('is_published','1')->where('posts.status','!=','0')->with('user','template','categories','meta','tags','MainCategory','relatedPosts','authors')->first();
             if ($post) {
                 Redis::setex('post:'.$id, config('settings.cacheExpiry'), $post);
                 return  $post;
