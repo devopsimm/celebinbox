@@ -46,7 +46,7 @@ class AiService
             return $response->json();
         }
 
-        dd($response->body());
+       // dd($response->body());
         return ['error' => $response->status(), 'message' => $response->body()];
     }
 
