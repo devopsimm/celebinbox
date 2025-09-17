@@ -1243,6 +1243,11 @@ class PostService
     // Get post from redis collection || set post into redis collection from db
     public function getRedisPostByID($id){
         $postExists = Redis::exists('post:'.$id);
+
+        if (isset($_GET['sss'])){
+            dd($postExists); 
+        }
+
         if ($postExists) {
             $post = Redis::get('post:'.$id);
             $post = json_decode($post, true);
