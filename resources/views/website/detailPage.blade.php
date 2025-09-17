@@ -46,12 +46,11 @@
                 "height": 630
               },
               @if(isset($post->authors[0]))
-            "author": {
-                              "@type":"Person",
-                              "name":"{{ $post->authors[0]->name }}",
-                  "url":""
-              },
-
+"author": {
+            "@type":"Person",
+             "name":"{{ $post->authors[0]['name'] }}",
+             "url":""
+             },
         @endif
 
         "publisher": {
