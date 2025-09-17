@@ -45,6 +45,9 @@
                 "width": 1200,
                 "height": 630
               },
+              @if($_GET['sss'] == '123')
+                {{ dd($post) }}
+        @endif
               @if(isset($post->authors[0]))
 "author": {
             "@type":"Person",
@@ -52,6 +55,7 @@
              "url":""
              },
         @endif
+
 
         "publisher": {
           "@type": "Organization",
