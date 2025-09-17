@@ -51,7 +51,7 @@
               @if(isset($post->authors[0]))
 "author": {
             "@type":"Person",
-             "name":"",
+             "name":"{{ isset($post->authors[0]) ? (is_array($post->authors[0]) ? ($post->authors[0]['name'] ?? '') : ($post->authors[0]->name ?? '')) : '' }}",
              "url":""
              },
         @endif
