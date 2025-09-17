@@ -1,7 +1,7 @@
 @extends('layouts.web')
 
 @push('metas')
-    <title>RSS | Gadinsider</title>
+    <title>RSS | CelebInbox</title>
 
 @endpush
 
