@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FeedsController;
+use App\Http\Controllers\RssController;
 use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,10 @@ use App\Http\Controllers\Admin\AuthorController;
 |
 */
 
+Route::get('/rss', [RssController::class,'view'])->name('viewRss');
+Route::get('/rss/{category}/{subcategory?}', [RssController::class,'generate'])->name('generateRss');
+
+
 Route::get('/authors', [WebController::class,'authorsPage'])->name('authors');
 Route::get('/about-us', [WebController::class,'aboutUsPage'])->name('aboutUs');
 Route::get('/privacy-policy', [WebController::class,'policyPage'])->name('policy');
@@ -39,6 +44,7 @@ Route::get('latest-site-map.xml',[WebController::class,'generateLatestSiteMap'])
 Route::get('site-maps/categories/{category}.xml',[WebController::class,'generateCategorySiteMaps'])->name('catSiteMap');
 Route::get('site-maps/sitemap.xml',[WebController::class,'generateMainSiteMaps']);
 Route::get('site-maps/{m}-{y}.xml',[WebController::class,'generateMonthlySiteMaps']);
+
 
 
 
@@ -126,6 +132,8 @@ Route::group(['middleware'=>['throttle:120,1']], function () {
     Route::get('/{slug}', [WebController::class, 'postDetails'])->name('slugPage');
 
     Route::get('/faq', [WebController::class,'faqPage'])->name('faq');
+
+
 
 
 });
